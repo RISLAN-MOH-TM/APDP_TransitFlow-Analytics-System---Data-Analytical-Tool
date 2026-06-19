@@ -1,0 +1,467 @@
+================================================================================
+HOW TO RUN JUNIT TESTS ONE BY ONE - COMPLETE GUIDE
+================================================================================
+
+This guide shows multiple methods to run individual test files in your
+TransitFlow Analytics Backend project.
+
+================================================================================
+METHOD 1: COMMAND LINE - RUN SINGLE TEST CLASS
+================================================================================
+
+**Syntax**:
+```bash
+cd backend
+.\mvnw.cmd test -Dtest=ClassName
+```
+
+**Examples**:
+
+1. Run CustomerModelTest:
+```bash
+.\mvnw.cmd test -Dtest=CustomerModelTest
+```
+
+2. Run DatasetServiceTest (integration):
+```bash
+.\mvnw.cmd test -Dtest=DatasetServiceTest
+```
+
+3. Run RevenueAnalysisStrategyTest:
+```bash
+.\mvnw.cmd test -Dtest=RevenueAnalysisStrategyTest
+```
+
+4. Run AnalyticsControllerTest:
+```bash
+.\mvnw.cmd test -Dtest=AnalyticsControllerTest
+```
+
+================================================================================
+METHOD 2: COMMAND LINE - RUN SPECIFIC TEST METHOD
+================================================================================
+
+**Syntax**:
+```bash
+.\mvnw.cmd test -Dtest=ClassName#methodName
+```
+
+**Examples**:
+
+1. Run only testGetIngestionStats method:
+```bash
+.\mvnw.cmd test -Dtest=DatasetServiceTest#testGetIngestionStats
+```
+
+2. Run only testRevenueCalculation method:
+```bash
+.\mvnw.cmd test -Dtest=RevenueAnalysisStrategyTest#testRevenueCalculation
+```
+
+3. Run only testCustomerCreation method:
+```bash
+.\mvnw.cmd test -Dtest=CustomerModelTest#testCustomerCreation
+```
+
+================================================================================
+METHOD 3: COMMAND LINE - RUN MULTIPLE SPECIFIC TESTS
+================================================================================
+
+**Syntax (comma-separated)**:
+```bash
+.\mvnw.cmd test -Dtest=Class1,Class2,Class3
+```
+
+**Examples**:
+
+1. Run all model tests:
+```bash
+.\mvnw.cmd test -Dtest=CustomerModelTest,OrderModelTest,PaymentModelTest
+```
+
+2. Run service and facade tests:
+```bash
+.\mvnw.cmd test -Dtest=DatasetServiceTest,TransitFlowFacadeTest
+```
+
+================================================================================
+METHOD 4: COMMAND LINE - RUN TESTS BY PACKAGE/PATTERN
+================================================================================
+
+**Syntax (wildcard pattern)**:
+```bash
+.\mvnw.cmd test -Dtest=pattern*
+```
+
+**Examples**:
+
+1. Run all tests in a package:
+```bash
+.\mvnw.cmd test -Dtest=com.transitflow.model.*
+```
+
+2. Run all model tests:
+```bash
+.\mvnw.cmd test -Dtest=*ModelTest
+```
+
+3. Run all controller tests:
+```bash
+.\mvnw.cmd test -Dtest=*ControllerTest
+```
+
+4. Run all strategy tests:
+```bash
+.\mvnw.cmd test -Dtest=*StrategyTest
+```
+
+================================================================================
+METHOD 5: USING THE BATCH SCRIPT (INTERACTIVE)
+================================================================================
+
+**Step 1**: Run the batch script
+```bash
+cd backend
+.\RUN_SINGLE_TEST.bat
+```
+
+**Step 2**: When prompted, enter the test class name:
+```
+Enter test class name (e.g., DatasetServiceTest): CustomerModelTest
+```
+
+**Step 3**: Press Enter and view results
+
+================================================================================
+METHOD 6: INTELLIJ IDEA (IDE)
+================================================================================
+
+**Option A: Run Entire Test Class**
+1. Open the test file (e.g., CustomerModelTest.java)
+2. Right-click anywhere in the file
+3. Select "Run 'CustomerModelTest'"
+4. View results in the Run panel at bottom
+
+**Option B: Run Single Test Method**
+1. Open the test file
+2. Find the specific test method (e.g., @Test void testCustomerCreation())
+3. Click the green play icon in the left gutter next to the method
+4. OR right-click the method name → "Run 'testCustomerCreation()'"
+
+**Option C: Using Test Explorer**
+1. View → Tool Windows → Tests (or press Ctrl+Shift+F10)
+2. Navigate to the test you want
+3. Right-click → Run
+
+**Option D: Keyboard Shortcut**
+1. Place cursor in test method
+2. Press Ctrl+Shift+F10 (Windows/Linux)
+3. Or Ctrl+R (Mac)
+
+================================================================================
+METHOD 7: ECLIPSE IDE
+================================================================================
+
+**Option A: Run Entire Test Class**
+1. Open test file in editor
+2. Right-click on file in Project Explorer
+3. Select "Run As" → "JUnit Test"
+4. View results in JUnit panel
+
+**Option B: Run Single Test Method**
+1. Open test file
+2. Right-click on the specific test method
+3. Select "Run As" → "JUnit Test"
+
+**Option C: Using Outline View**
+1. Window → Show View → Outline
+2. In Outline view, find your test method
+3. Right-click → "Run As" → "JUnit Test"
+
+================================================================================
+METHOD 8: VISUAL STUDIO CODE (WITH EXTENSIONS)
+================================================================================
+
+**Prerequisites**:
+- Install "Test Runner for Java" extension
+- Install "Language Support for Java" extension
+
+**Steps**:
+1. Open test file
+2. Look for "Run Test" or "Debug Test" CodeLens above each test method
+3. Click "Run Test" to execute that specific test
+4. View results in Test Explorer sidebar
+
+================================================================================
+COMPLETE LIST OF YOUR TEST FILES
+================================================================================
+
+**Adapter Tests** (10 tests):
+- CsvDatasetAdapterTest
+
+**Controller Tests** (14 tests):
+- AnalyticsControllerTest (8 tests)
+- DatasetControllerTest (6 tests)
+
+**Service Tests** (9 tests):
+- DatasetServiceTest (root) - Integration test (7 tests)
+- DatasetServiceTest (service package) - Unit test (2 tests)
+
+**Facade Tests** (9 tests):
+- TransitFlowFacadeTest
+
+**Factory Tests** (10 tests):
+- FactoryPatternTest
+
+**Model Tests** (50 tests):
+- CustomerModelTest (8 tests)
+- DeliveryModelTest (4 tests)
+- FaultyRecordModelTest (9 tests)
+- OrderItemModelTest (7 tests)
+- OrderModelTest (5 tests)
+- PaymentModelTest (6 tests)
+- ProductModelTest (3 tests)
+- SellerModelTest (8 tests)
+
+**Strategy Tests** (3 tests):
+- RevenueAnalysisStrategyTest
+
+**Application Tests** (1 test):
+- TransitFlowApplicationTest
+
+**Total: 106 tests across 17 test files**
+
+================================================================================
+QUICK REFERENCE COMMANDS
+================================================================================
+
+# Run single test class
+.\mvnw.cmd test -Dtest=CustomerModelTest
+
+# Run single test method
+.\mvnw.cmd test -Dtest=CustomerModelTest#testCustomerCreation
+
+# Run all model tests
+.\mvnw.cmd test -Dtest=*ModelTest
+
+# Run all controller tests
+.\mvnw.cmd test -Dtest=*ControllerTest
+
+# Run multiple specific tests
+.\mvnw.cmd test -Dtest=CustomerModelTest,OrderModelTest
+
+# Run with verbose output
+.\mvnw.cmd test -Dtest=CustomerModelTest -X
+
+# Run without recompiling
+.\mvnw.cmd surefire:test -Dtest=CustomerModelTest
+
+================================================================================
+TIPS FOR FASTER TEST EXECUTION
+================================================================================
+
+**1. Skip compilation if already compiled**:
+```bash
+.\mvnw.cmd surefire:test -Dtest=CustomerModelTest
+```
+
+**2. Run in parallel (use with caution for integration tests)**:
+```bash
+.\mvnw.cmd test -Dtest=CustomerModelTest -DforkCount=2
+```
+
+**3. Skip clean phase**:
+```bash
+.\mvnw.cmd test -Dtest=CustomerModelTest
+# Instead of:
+# .\mvnw.cmd clean test -Dtest=CustomerModelTest
+```
+
+**4. Use fail-fast mode**:
+```bash
+.\mvnw.cmd test -Dtest=CustomerModelTest -Dsurefire.skipAfterFailureCount=1
+```
+
+================================================================================
+COMMON ISSUES AND SOLUTIONS
+================================================================================
+
+**Issue 1: Test not found**
+```
+Error: No tests were executed!
+```
+**Solution**: Make sure class name is exact (case-sensitive):
+```bash
+# WRONG
+.\mvnw.cmd test -Dtest=customermodeltest
+
+# CORRECT
+.\mvnw.cmd test -Dtest=CustomerModelTest
+```
+
+**Issue 2: Multiple classes with same name**
+**Solution**: Use fully qualified name:
+```bash
+.\mvnw.cmd test -Dtest=com.transitflow.service.DatasetServiceTest
+```
+
+**Issue 3: Test compilation errors**
+**Solution**: Clean and rebuild first:
+```bash
+.\mvnw.cmd clean compile test-compile
+.\mvnw.cmd test -Dtest=CustomerModelTest
+```
+
+**Issue 4: Dependencies not updated**
+**Solution**: Force update dependencies:
+```bash
+.\mvnw.cmd clean install -U
+.\mvnw.cmd test -Dtest=CustomerModelTest
+```
+
+================================================================================
+VIEWING TEST RESULTS
+================================================================================
+
+**1. Console Output**:
+- Real-time output in terminal
+- Shows passed/failed tests immediately
+
+**2. Surefire Reports** (XML/TXT):
+Location: `backend/target/surefire-reports/`
+
+Files generated:
+- `TEST-com.transitflow.model.CustomerModelTest.xml`
+- `com.transitflow.model.CustomerModelTest.txt`
+
+**3. HTML Reports** (if configured):
+Add to pom.xml for HTML reports:
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-report-plugin</artifactId>
+    <version>3.2.5</version>
+</plugin>
+```
+
+Generate report:
+```bash
+.\mvnw.cmd surefire-report:report
+```
+View at: `target/site/surefire-report.html`
+
+================================================================================
+EXAMPLES FOR YOUR PROJECT
+================================================================================
+
+**Example 1: Test customer model validation**
+```bash
+cd "C:\Users\User\OneDrive - British College of Applied Studies\4th Semester\APDP\System\backend"
+.\mvnw.cmd test -Dtest=CustomerModelTest
+```
+
+**Example 2: Test specific validation method**
+```bash
+.\mvnw.cmd test -Dtest=CustomerModelTest#testCustomerValidation
+```
+
+**Example 3: Test all model validations**
+```bash
+.\mvnw.cmd test -Dtest=*ModelTest
+```
+
+**Example 4: Test data ingestion**
+```bash
+.\mvnw.cmd test -Dtest=DatasetServiceTest#testGetIngestionStats
+```
+
+**Example 5: Test revenue analysis strategy**
+```bash
+.\mvnw.cmd test -Dtest=RevenueAnalysisStrategyTest
+```
+
+**Example 6: Test all analytics controllers**
+```bash
+.\mvnw.cmd test -Dtest=AnalyticsControllerTest,DatasetControllerTest
+```
+
+================================================================================
+DEBUGGING INDIVIDUAL TESTS
+================================================================================
+
+**Method 1: Add debug flag**
+```bash
+.\mvnw.cmd test -Dtest=CustomerModelTest -Dmaven.surefire.debug
+```
+Then attach debugger on port 5005
+
+**Method 2: IDE Debugging**
+1. Set breakpoints in test code
+2. Right-click test → "Debug 'TestName'"
+3. Step through code with debugger
+
+**Method 3: Add logging**
+Add to test method:
+```java
+@Test
+void testCustomer() {
+    System.out.println("Debug: Starting test");
+    // test code
+    System.out.println("Debug: Test completed");
+}
+```
+
+================================================================================
+CREATING CUSTOM RUN SCRIPTS
+================================================================================
+
+**Create: RUN_MODEL_TESTS.bat**
+```batch
+@echo off
+cd /d "%~dp0"
+echo Running all model tests...
+call mvnw.cmd test -Dtest=*ModelTest
+pause
+```
+
+**Create: RUN_CONTROLLER_TESTS.bat**
+```batch
+@echo off
+cd /d "%~dp0"
+echo Running all controller tests...
+call mvnw.cmd test -Dtest=*ControllerTest
+pause
+```
+
+**Create: RUN_QUICK_TEST.bat**
+```batch
+@echo off
+set /p TEST_NAME="Enter test name: "
+cd /d "%~dp0"
+call mvnw.cmd test -Dtest=%TEST_NAME%
+pause
+```
+
+================================================================================
+SUMMARY - FASTEST METHODS
+================================================================================
+
+**Command Line (Fastest)**:
+```bash
+cd backend
+.\mvnw.cmd test -Dtest=CustomerModelTest
+```
+
+**Batch Script (Easiest)**:
+```bash
+.\RUN_SINGLE_TEST.bat
+# Then type: CustomerModelTest
+```
+
+**IDE (Most Convenient)**:
+- IntelliJ: Click green arrow next to test
+- Eclipse: Right-click → Run As → JUnit Test
+
+================================================================================
+END OF GUIDE
+================================================================================

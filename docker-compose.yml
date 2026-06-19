@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # Backend Service - Spring Boot API
+  backend:
+    container_name: transitflow-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - JAVA_OPTS=-Xmx512m -Xms256m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/dataset/stats"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    networks:
+      - transitflow-network
+    restart: unless-stopped
+    labels:
+      - "com.transitflow.service=backend"
+      - "com.transitflow.description=Spring Boot Analytics API"
+
+  # Frontend Service - Streamlit Dashboard
+  frontend:
+    container_name: transitflow-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      - BACKEND_URL=http://backend:8080
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_HEADLESS=true
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    networks:
+      - transitflow-network
+    restart: unless-stopped
+    labels:
+      - "com.transitflow.service=frontend"
+      - "com.transitflow.description=Streamlit Analytics Dashboard"
+
+networks:
+  transitflow-network:
+    driver: bridge
+    name: transitflow-network
+
+volumes:
+  # Optional: Add persistent volumes if needed
+  backend-data:
+    name: transitflow-backend-data
+  frontend-data:
+    name: transitflow-frontend-data

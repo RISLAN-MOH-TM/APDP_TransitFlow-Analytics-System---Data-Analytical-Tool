@@ -1,0 +1,66 @@
+# Docker ignore file for TransitFlow System
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+docs/
+Guide/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+*.out
+*.err
+
+# Build artifacts (backend)
+target/
+*.class
+*.jar
+*.war
+
+# Python (frontend)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Batch files (Windows specific)
+*.bat
+
+# Maven wrapper (keep in backend only)
+.mvn/wrapper/maven-wrapper.jar

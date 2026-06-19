@@ -1,0 +1,10 @@
+cd frontend
+python -m pytest tests/ -v
+
+# Backend (126 tests)
+cd backend
+.\mvnw.cmd "-Dnet.bytebuddy.experimental=true" test
+
+# Frontend (110 tests)
+cd frontend
+python -m pytest tests/ -v

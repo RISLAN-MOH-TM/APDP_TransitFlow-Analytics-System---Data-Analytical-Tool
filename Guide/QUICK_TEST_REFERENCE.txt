@@ -1,0 +1,222 @@
+================================================================================
+QUICK TEST REFERENCE CARD - COPY & PASTE COMMANDS
+================================================================================
+
+Navigate to backend folder first:
+cd "C:\Users\User\OneDrive - British College of Applied Studies\4th Semester\APDP\System\backend"
+
+================================================================================
+EASIEST METHODS (USE BATCH SCRIPTS)
+================================================================================
+
+1. Interactive Menu (Recommended):
+   .\RUN_TEST_MENU.bat
+
+2. Run Specific Test:
+   .\RUN_SPECIFIC_TEST.bat
+
+3. Run All Model Tests:
+   .\RUN_MODEL_TESTS.bat
+
+4. Run All Controller Tests:
+   .\RUN_CONTROLLER_TESTS.bat
+
+5. Run All Tests:
+   .\RUN_TESTS.bat
+
+================================================================================
+COMMAND LINE - INDIVIDUAL TEST CLASSES
+================================================================================
+
+# Adapter Tests
+.\mvnw.cmd test -Dtest=CsvDatasetAdapterTest
+
+# Controller Tests
+.\mvnw.cmd test -Dtest=AnalyticsControllerTest
+.\mvnw.cmd test -Dtest=DatasetControllerTest
+
+# Service Tests
+.\mvnw.cmd test -Dtest=DatasetServiceTest
+.\mvnw.cmd test -Dtest=com.transitflow.service.DatasetServiceTest
+
+# Facade Tests
+.\mvnw.cmd test -Dtest=TransitFlowFacadeTest
+
+# Factory Tests
+.\mvnw.cmd test -Dtest=FactoryPatternTest
+
+# Model Tests
+.\mvnw.cmd test -Dtest=CustomerModelTest
+.\mvnw.cmd test -Dtest=OrderModelTest
+.\mvnw.cmd test -Dtest=PaymentModelTest
+.\mvnw.cmd test -Dtest=DeliveryModelTest
+.\mvnw.cmd test -Dtest=ProductModelTest
+.\mvnw.cmd test -Dtest=SellerModelTest
+.\mvnw.cmd test -Dtest=OrderItemModelTest
+.\mvnw.cmd test -Dtest=FaultyRecordModelTest
+
+# Strategy Tests
+.\mvnw.cmd test -Dtest=RevenueAnalysisStrategyTest
+
+# Application Tests
+.\mvnw.cmd test -Dtest=TransitFlowApplicationTest
+
+================================================================================
+COMMAND LINE - RUN BY CATEGORY (PATTERNS)
+================================================================================
+
+# All Model Tests (50 tests)
+.\mvnw.cmd test -Dtest=*ModelTest
+
+# All Controller Tests (14 tests)
+.\mvnw.cmd test -Dtest=*ControllerTest
+
+# All Strategy Tests
+.\mvnw.cmd test -Dtest=*StrategyTest
+
+# All Facade Tests
+.\mvnw.cmd test -Dtest=*FacadeTest
+
+# All Factory Tests
+.\mvnw.cmd test -Dtest=*FactoryTest
+
+================================================================================
+COMMAND LINE - SPECIFIC TEST METHODS
+================================================================================
+
+# Run single method from CustomerModelTest
+.\mvnw.cmd test -Dtest=CustomerModelTest#testCustomerCreation
+
+# Run single method from DatasetServiceTest
+.\mvnw.cmd test -Dtest=DatasetServiceTest#testGetIngestionStats
+
+# Run single method from RevenueAnalysisStrategyTest
+.\mvnw.cmd test -Dtest=RevenueAnalysisStrategyTest#testRevenueCalculation
+
+================================================================================
+COMMAND LINE - MULTIPLE TESTS AT ONCE
+================================================================================
+
+# Run multiple specific tests
+.\mvnw.cmd test -Dtest=CustomerModelTest,OrderModelTest,PaymentModelTest
+
+# Run service and facade tests together
+.\mvnw.cmd test -Dtest=DatasetServiceTest,TransitFlowFacadeTest
+
+# Run all controller and model tests
+.\mvnw.cmd test -Dtest=*ControllerTest,*ModelTest
+
+================================================================================
+FASTEST COMMANDS (NO RECOMPILATION)
+================================================================================
+
+# Skip compilation if code hasn't changed
+.\mvnw.cmd surefire:test -Dtest=CustomerModelTest
+
+================================================================================
+USEFUL FLAGS
+================================================================================
+
+# Verbose output (shows more details)
+.\mvnw.cmd test -Dtest=CustomerModelTest -X
+
+# Show stack traces for failures
+.\mvnw.cmd test -Dtest=CustomerModelTest -e
+
+# Run quietly (less output)
+.\mvnw.cmd test -Dtest=CustomerModelTest -q
+
+# Skip test compilation (if already compiled)
+.\mvnw.cmd test -Dtest=CustomerModelTest -DskipTests=false -Dmaven.test.skip=false
+
+================================================================================
+EXAMPLES FOR YOUR COMMON USE CASES
+================================================================================
+
+Example 1: Test customer validation
+.\mvnw.cmd test -Dtest=CustomerModelTest
+
+Example 2: Test data ingestion
+.\mvnw.cmd test -Dtest=DatasetServiceTest
+
+Example 3: Test revenue analysis
+.\mvnw.cmd test -Dtest=RevenueAnalysisStrategyTest
+
+Example 4: Test all models at once
+.\mvnw.cmd test -Dtest=*ModelTest
+
+Example 5: Test specific method
+.\mvnw.cmd test -Dtest=CustomerModelTest#testCustomerValidation
+
+Example 6: Test analytics endpoints
+.\mvnw.cmd test -Dtest=AnalyticsControllerTest
+
+Example 7: Test CSV parsing
+.\mvnw.cmd test -Dtest=CsvDatasetAdapterTest
+
+================================================================================
+INTELLIJ IDEA SHORTCUTS
+================================================================================
+
+Run test class:        Right-click file → Run 'ClassName'
+Run test method:       Right-click method → Run 'methodName()'
+Run from keyboard:     Ctrl+Shift+F10 (cursor on test)
+Debug test:            Right-click → Debug 'TestName'
+Re-run last test:      Shift+F10
+Re-run failed tests:   In Run panel, click "Run Failed Tests" icon
+
+================================================================================
+TEST FILE LOCATIONS
+================================================================================
+
+All tests are in:
+backend/src/test/java/com/transitflow/
+
+Adapter tests:    backend/src/test/java/com/transitflow/adapter/
+Controller tests: backend/src/test/java/com/transitflow/controller/
+Service tests:    backend/src/test/java/com/transitflow/service/
+Facade tests:     backend/src/test/java/com/transitflow/facade/
+Factory tests:    backend/src/test/java/com/transitflow/factory/
+Model tests:      backend/src/test/java/com/transitflow/model/
+Strategy tests:   backend/src/test/java/com/transitflow/strategy/
+Root tests:       backend/src/test/java/com/transitflow/
+
+================================================================================
+TEST RESULTS LOCATION
+================================================================================
+
+Console output:  Terminal window (real-time)
+XML reports:     backend/target/surefire-reports/*.xml
+Text reports:    backend/target/surefire-reports/*.txt
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Test not found?
+  - Check spelling (case-sensitive!)
+  - Use full class name: com.transitflow.service.DatasetServiceTest
+
+Tests fail?
+  - Clean and rebuild: .\mvnw.cmd clean compile test-compile
+  - Run test again
+
+Compilation errors?
+  - Update dependencies: .\mvnw.cmd clean install -U
+
+IDE not recognizing tests?
+  - IntelliJ: File → Invalidate Caches → Restart
+  - Eclipse: Project → Clean
+
+================================================================================
+COPY-PASTE TEMPLATE
+================================================================================
+
+# Replace CLASS_NAME with your test class name:
+
+.\mvnw.cmd test -Dtest=CLASS_NAME
+
+Example:
+.\mvnw.cmd test -Dtest=CustomerModelTest
+
+================================================================================
